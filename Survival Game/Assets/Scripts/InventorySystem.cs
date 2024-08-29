@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class InventorySystem : MonoBehaviour
     public bool isOpen;
 
     public bool isFull;
+
+    public GameObject ItemInfoUI;
+
+    //pup op    
+    public GameObject pickUpAlert;
+    public Text pickUpName;
+    public Image pickUpImage;
+
 
 
     private void Awake()
@@ -89,6 +98,14 @@ public class InventorySystem : MonoBehaviour
 
         itemList.Add(ItemName);
 
+        TriggerPopUp(ItemName, itemToAdd.GetComponent<Image>().sprite);
+        
+
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
+
+        
+
     }
 
     private GameObject FindNextEmptySLot()
@@ -103,6 +120,21 @@ public class InventorySystem : MonoBehaviour
 
         return new GameObject();
     }
+
+    IEnumerator PopUpWait()
+    {
+        yield return new WaitForSeconds(3);
+        pickUpAlert.SetActive(false);
+    }
+
+    void TriggerPopUp(String ItemName, Sprite ItemSprite)
+    {
+        pickUpAlert.SetActive(true);
+        pickUpName.text = ItemName;
+        pickUpImage.sprite = ItemSprite;
+        StartCoroutine(PopUpWait());
+    }
+    
 
     public bool checkIfFull()
     {
@@ -145,6 +177,8 @@ public class InventorySystem : MonoBehaviour
                 }
             }
         }
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeededItems();
     }
 
     public void ReCalculateList()

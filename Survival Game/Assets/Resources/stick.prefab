@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 3079443228938416813}
   - component: {fileID: 472823625120625492}
   - component: {fileID: 3586434340810424776}
+  - component: {fileID: 5443333333143238112}
   m_Layer: 5
   m_Name: stick
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,3 +102,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc50ba32dee641348cd461fd58c48df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5443333333143238112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2752234885768782284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c24c5a7825643e28f84c5b1d7d3f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTrashable: 0
+  thisName: Stick
+  thisDescription: Wood
+  thisFunctionality: Used to craft an axe
+  isConsumable: 0
+  healthEffect: 0
+  caloriesEffect: 0
+  hydrationEffect: 0
