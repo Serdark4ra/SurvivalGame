@@ -68,6 +68,8 @@ public class CraftingSystem : MonoBehaviour
         craftAxeButton = toolsScreenUI.transform.Find("Axe").transform.Find("CraftButton").GetComponent<Button>();
         craftAxeButton.onClick.AddListener(delegate {CraftAnyItem(AxeBLP);});
 
+        Cursor.visible = false;
+
     }
 
     private void CraftAnyItem(BluePrint bluePrintToCraft)
@@ -109,19 +111,33 @@ public class CraftingSystem : MonoBehaviour
 			Debug.Log("i is pressed");
             CraftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            SelectionManager.Instance.DisableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+
             isOpen = true;
+
  
         }
         else if ((Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Escape) ) && isOpen)
         {
             CraftingScreenUI.SetActive(false);
             toolsScreenUI.SetActive(false);
+
             if (!InventorySystem.Instance.isOpen)
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
+            Cursor.visible = false;
+
+            SelectionManager.Instance.EnableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
+
             isOpen = false;
+            
         }
+
     }
 
     public IEnumerator calculate()

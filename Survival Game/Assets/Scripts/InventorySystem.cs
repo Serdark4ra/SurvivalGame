@@ -50,6 +50,7 @@ public class InventorySystem : MonoBehaviour
         isOpen = false;
         isFull = false;
         PopulateSlotList();
+        Cursor.visible = false;
 
     }
     private void PopulateSlotList()
@@ -74,6 +75,10 @@ public class InventorySystem : MonoBehaviour
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             isOpen = true;
+            Cursor.visible = true;
+
+            SelectionManager.Instance.DisableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
 
         }
         else if ((Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape)) && isOpen)
@@ -84,6 +89,10 @@ public class InventorySystem : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
             }
             isOpen = false;
+            Cursor.visible = false;
+
+            SelectionManager.Instance.EnableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
         }
     }
 

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8195288602425491056}
   - component: {fileID: 2760733032119196042}
   - component: {fileID: 2769442756082296390}
+  - component: {fileID: 2745045571110740481}
+  - component: {fileID: 7084532729685408103}
   m_Layer: 5
   m_Name: apple
   m_TagString: Untagged
@@ -96,3 +98,27 @@ MonoBehaviour:
   healthEffect: 10
   caloriesEffect: 100
   hydrationEffect: 2
+--- !u!114 &2745045571110740481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623504083211012661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc50ba32dee641348cd461fd58c48df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &7084532729685408103
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5623504083211012661}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

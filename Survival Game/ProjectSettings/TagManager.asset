@@ -6,6 +6,8 @@ TagManager:
   tags:
   - slot
   - Pickable
+  - QuickSlots
+  - QuickSlot
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - Ground
   - 
-  - 
+  - Equipable
   - 
   - 
   - 

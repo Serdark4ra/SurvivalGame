@@ -19,6 +19,8 @@ public class SelectionManager : MonoBehaviour
     public Image centerDotIcon;
     public Image handIcon;
 
+    public bool isHandIconActive;
+
 
     private void Start()
     {
@@ -26,6 +28,7 @@ public class SelectionManager : MonoBehaviour
         interaction_text = interaction_Info_UI.GetComponent<Text>();
         centerDotIcon.gameObject.SetActive(true);
         handIcon.gameObject.SetActive(false);
+        isHandIconActive = false;
     }
 
     void Awake()
@@ -61,11 +64,13 @@ public class SelectionManager : MonoBehaviour
                 {
                     handIcon.gameObject.SetActive(true);
                     centerDotIcon.gameObject.SetActive(false);
+                    isHandIconActive = true;
                 }
                 else
                 {
                     handIcon.gameObject.SetActive(false);
                     centerDotIcon.gameObject.SetActive(true);
+                    isHandIconActive = false;
                 }
             }
             else
@@ -74,6 +79,7 @@ public class SelectionManager : MonoBehaviour
                 interaction_Info_UI.SetActive(false);
                 handIcon.gameObject.SetActive(false);
                 centerDotIcon.gameObject.SetActive(true);
+                isHandIconActive = false;
 
             }
 
@@ -82,8 +88,30 @@ public class SelectionManager : MonoBehaviour
         {
             onTarget = false;
             interaction_Info_UI.SetActive(false);
+            handIcon.gameObject.SetActive(false);
+            centerDotIcon.gameObject.SetActive(true);
+            isHandIconActive = false;
+            
+
             
 
         }
+    }
+
+    internal void DisableSelection()
+    {
+        handIcon.enabled = false;
+        centerDotIcon.enabled = false;
+        interaction_Info_UI.SetActive(false);
+
+        selectedObject = null;
+    }
+
+    internal void EnableSelection()
+    {
+        handIcon.enabled = true;
+        centerDotIcon.enabled = true;
+        interaction_Info_UI.SetActive(true);
+
     }
 }
