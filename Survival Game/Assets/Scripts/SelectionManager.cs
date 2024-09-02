@@ -20,6 +20,8 @@ public class SelectionManager : MonoBehaviour
     public Image handIcon;
 
     public bool isHandIconActive;
+    public GameObject selectedTree;
+    public GameObject chopHolder;
 
 
     private void Start()
@@ -29,6 +31,15 @@ public class SelectionManager : MonoBehaviour
         centerDotIcon.gameObject.SetActive(true);
         handIcon.gameObject.SetActive(false);
         isHandIconActive = false;
+
+        if(chopHolder != null)
+        {
+            Debug.Log("Chop holder is not null");
+        }
+        else
+        {
+            Debug.Log("Chop holder is null");
+        }
     }
 
     void Awake()
@@ -53,6 +64,34 @@ public class SelectionManager : MonoBehaviour
             var selectionTransform = hit.transform;
 
             InteractableObject ourInteractableObj = selectionTransform.GetComponent<InteractableObject>();
+
+            ChoppableTree ourChoppableTree = selectionTransform.GetComponent<ChoppableTree>();
+
+            if (ourChoppableTree && ourChoppableTree.playerInRange)
+            {
+                onTarget = true;
+                selectedTree = ourChoppableTree.gameObject;
+                ourChoppableTree.canBeChopped = true;
+                interaction_text.text = "Press E to chop";
+                interaction_Info_UI.SetActive(true);
+                handIcon.gameObject.SetActive(false);
+                centerDotIcon.gameObject.SetActive(true);
+                isHandIconActive = false;
+                chopHolder.SetActive(true);
+            }
+            else
+            {
+                if (selectedTree != null)
+                {
+                    selectedTree.gameObject.GetComponent<ChoppableTree>().canBeChopped = false;
+                    selectedTree = null;
+                    chopHolder.gameObject.SetActive(false);
+                }
+                {
+                    
+                }
+                
+            }
 
             if (ourInteractableObj && ourInteractableObj.playerInRange)
             {
