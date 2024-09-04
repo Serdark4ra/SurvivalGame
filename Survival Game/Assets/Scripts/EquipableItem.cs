@@ -18,17 +18,23 @@ public class EquipableItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !InventorySystem.Instance.isOpen && !CraftingSystem.Instance.isOpen && !SelectionManager.Instance.isHandIconActive)
         {
-            GameObject selectedTree = SelectionManager.Instance.selectedTree;
+            AudioListenerManager.Instance.PlaySound(AudioListenerManager.Instance.swingAxeSound);
+            animator.SetTrigger("hit");
+        }
+    }
+
+    public void GetHit()
+    {
+         GameObject selectedTree = SelectionManager.Instance.selectedTree;
         
             if (selectedTree != null)
             {
                 ChoppableTree choppableTree = selectedTree.GetComponent<ChoppableTree>();
                 if (choppableTree != null)
                 {
+                    AudioListenerManager.Instance.PlaySound(AudioListenerManager.Instance.chopTreeSound);
                     choppableTree.TakeDamage(10);
                 }
             }
-            animator.SetTrigger("hit");
-        }
     }
 }

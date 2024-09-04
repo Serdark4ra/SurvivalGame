@@ -13,13 +13,25 @@ public class BluePrint : MonoBehaviour
 
     public int numOfRequirements;
 
-    public BluePrint(string name, string Req1, string Req2, int Req1Amount, int Req2Amount, int numOfRequirements)
+    public int numberOfNewCreatedItem;
+
+    public BluePrint(string name, int numberOfNewCreatedItem, string Req1, string Req2, int Req1Amount, int Req2Amount, int numOfRequirements)
     {
         this.ItemName = name;
+        this.numberOfNewCreatedItem = numberOfNewCreatedItem;
         this.Req1 = Req1;
         this.Req2 = Req2;
         this.Req1Amount = Req1Amount;
         this.Req2Amount = Req2Amount;
+        this.numOfRequirements = numOfRequirements;
+    }
+
+    public BluePrint(string name, int numberOfNewCreatedItem, string Req1, int Req1Amount, int numOfRequirements)
+    {
+        this.ItemName = name;
+        this.numberOfNewCreatedItem = numberOfNewCreatedItem;
+        this.Req1 = Req1;
+        this.Req1Amount = Req1Amount;
         this.numOfRequirements = numOfRequirements;
     }
     

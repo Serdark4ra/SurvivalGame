@@ -17,6 +17,8 @@ public class PlayerState : MonoBehaviour
 
     public GameObject player;
 
+    
+
 
     void Awake()
     {

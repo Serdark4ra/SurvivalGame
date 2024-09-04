@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class AudioListenerManager : MonoBehaviour
 {
+
+    public static AudioListenerManager Instance { get; set; }
+
+    public AudioSource dropItemSound;
+    public AudioSource chopTreeSound;
+    public AudioSource craftItemSound;
+    public AudioSource swingAxeSound;
     void Start()
     {
         // Find all audio listeners in the scene
@@ -17,4 +24,27 @@ public class AudioListenerManager : MonoBehaviour
             }
         }
     }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+    public void PlaySound(AudioSource audioSource)
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
+    
+
+
 }

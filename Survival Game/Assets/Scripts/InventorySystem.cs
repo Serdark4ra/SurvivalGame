@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -145,7 +146,7 @@ public class InventorySystem : MonoBehaviour
     }
     
 
-    public bool checkIfFull()
+    public bool CheckSlotsAvailable(int emptySlotsNeeded)
     {
         int counter = 0;
 
@@ -158,7 +159,8 @@ public class InventorySystem : MonoBehaviour
 
 
         }
-        if (counter == 21)
+
+        if (counter <= 21 - emptySlotsNeeded)
         {
             return true;
         }
@@ -171,21 +173,32 @@ public class InventorySystem : MonoBehaviour
     internal void RemoveItem(string nameToRemove, int amountToRemove)
     {
         Debug.Log("Removing " + amountToRemove + " " + nameToRemove);
-        for (int i = 0; i < amountToRemove; i++)
+        int itemsRemoved = 0;
+
+        foreach (GameObject slot in slotList)
         {
-            foreach (GameObject slot in slotList)
+            if (slot.transform.childCount > 0)
             {
-                if (slot.transform.childCount > 0)
+                Transform item = slot.transform.GetChild(0);
+                if (item.name.StartsWith(nameToRemove))
                 {
-                    if (slot.transform.GetChild(0).name == nameToRemove + "(Clone)")
+                    Debug.Log("Removing " + nameToRemove);
+                    Destroy(item.gameObject);
+                    Debug.Log("Removed " + nameToRemove);
+                    itemsRemoved++;
+                    if (itemsRemoved >= amountToRemove)
                     {
-                        Debug.Log("Removing " + nameToRemove);
-                        Destroy(slot.transform.GetChild(0).gameObject);
-                       
+                        break;
                     }
                 }
             }
         }
+
+        if (itemsRemoved < amountToRemove)
+        {
+            Debug.LogWarning("Could not remove the requested amount of " + nameToRemove + ". Only " + itemsRemoved + " items were removed.");
+        }
+
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeededItems();
     }

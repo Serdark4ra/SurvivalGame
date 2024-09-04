@@ -46,7 +46,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: f24a545872bae43bbba54eb4252b6e48, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 964627440447313071, guid: 0bf753b25d5834e69aca6e7f5729bf32, type: 3}
       propertyPath: treeMaxHealth
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5544929756346844061, guid: 0bf753b25d5834e69aca6e7f5729bf32, type: 3}
       propertyPath: m_Name
